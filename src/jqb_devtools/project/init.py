@@ -39,12 +39,12 @@ def init(
     if cfg_data['ides']:
         ides = {item['name']: item['executable'] for item in cfg_data['ides']}
         questions.append(inquirer.List(
-            "default_ide",
-            message="Select a default IDE for this project to open in",
+            "preferred_ide",
+            message="Select a preferred IDE for this project to open in",
             choices=ides
         ))
 
-        pending_cfg["default_ide"] = lambda selected_cfg: ides[selected_cfg["default_ide"]]
+        pending_cfg["preferred_ide"] = lambda selected_cfg: ides[selected_cfg["preferred_ide"]]
 
 
     final_cfg = {}
