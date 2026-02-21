@@ -1,5 +1,11 @@
 ides:
-  - name:
-    executable:
-  - name:
-    executable: 
+  - name: Android Studio
+    executable: studio
+  - name: DataGrip
+    executable: datagrip
+  - name: IntelliJ IDEA
+    executable: idea
+  - name: PyCharm
+    executable: pycharm
+  - name: WebStorm
+    executable: webstorm
