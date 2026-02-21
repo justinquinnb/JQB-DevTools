@@ -20,7 +20,8 @@ def init(
     print(f"Initializing project {cwd.name}...")
 
     # Retrieve the pre-configured IDEs
-    with open('config.yaml', 'r') as config_file:
+    config_path = Path(__file__).resolve().parent.parent.parent.parent / 'config.yaml'
+    with open(config_path, 'r') as config_file:
         config_data = yaml.safe_load(config_file)
 
     ides = {item['name']: item['executable'] for item in config_data['ides']}
@@ -54,8 +55,8 @@ def init(
     }
 
     # Create the project's JQ DevTool files
-    os.makedirs("./.jq-dev", exist_ok=True)
-    with open("./.jq-dev/config.yaml", "w") as project_config_file:
+    os.makedirs("./.jqb-devtools", exist_ok=True)
+    with open("./.jq-devtools/config.yaml", "w") as project_config_file:
         yaml.dump(configurations, project_config_file)
 
 if __name__ == "__main__":
