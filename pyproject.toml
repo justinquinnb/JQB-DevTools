@@ -1,2 +1,21 @@
+[project]
+name = "jqb-devtools"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Justin Quinn", email = "67286549+justinquinnb@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "inquirer>=3.4.1",
+    "pyyaml>=6.0.3",
+    "typer>=0.24.0",
+]
+
 [project.scripts]
-jqb-devtools = "main:app"
+jqb-devtools = "jqb_devtools.main:app"
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
