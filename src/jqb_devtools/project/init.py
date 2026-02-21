@@ -5,6 +5,7 @@ import typer
 import subprocess
 import os
 import yaml
+from ..utils.config import get_config_path
 
 app = typer.Typer()
 
@@ -20,7 +21,7 @@ def init(
     print(f"Initializing project {cwd.name}...")
 
     # Retrieve the pre-configured IDEs
-    config_path = Path(__file__).resolve().parent.parent.parent.parent / 'config.yaml'
+    config_path = get_config_path()
     with open(config_path, 'r') as config_file:
         config_data = yaml.safe_load(config_file)
 

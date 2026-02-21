@@ -1,7 +1,7 @@
 [project]
 name = "jqb-devtools"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "Custom command-line development tools"
 readme = "README.md"
 authors = [
     { name = "Justin Quinn", email = "67286549+justinquinnb@users.noreply.github.com" }
@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "inquirer>=3.4.1",
+    "platformdirs>=4.9.2",
     "pyyaml>=6.0.3",
     "typer>=0.24.0",
 ]
