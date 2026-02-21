@@ -28,9 +28,9 @@ def init(
     questions: list[inquirer.questions.Question] = []
 
     # Check whether git's been initialized already before letting the question be asked
-    git_already_initialized = cwd.joinpath(".git").exists()
+    git_initialized = cwd.joinpath(".git").exists()
 
-    if not git and not git_already_initialized:
+    if not git and not git_initialized:
         questions.append(
             inquirer.Confirm("git", message="Initialize as a Git repository?", default=True))
 
@@ -54,6 +54,8 @@ def init(
         # Initialize the project as a git repo
         if "git" in answers and answers["git"]:
             subprocess.run(["git", "init"])
+            git_initialized = True
+
 
         # Save the answers of all asked questions
         for pending_cfg_key, pending_cfg_value in pending_cfg.items():
@@ -63,6 +65,15 @@ def init(
     os.makedirs("./.jqb-devtools", exist_ok=True)
     with open("./.jqb-devtools/config.yaml", "w") as project_config_file:
         yaml.dump(final_cfg, project_config_file)
+
+    # Git-ignore the project's JQB DevTools files if desired
+    if git_initialized:
+        answers = inquirer.prompt(
+            [inquirer.Confirm("git_ignore_devtools_config", message="Add .jqb-devtools to .gitignore", default=True)])
+
+        if answers["git_ignore_devtools_config"]:
+            with open("./.gitignore", "a") as gitignore_file:
+                gitignore_file.write(".jqb-devtools")
 
     print("Initialization complete!")
 
