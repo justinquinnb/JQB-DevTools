@@ -1,5 +1,5 @@
 import typer
-from ..utils.config import get_config_path
+from ..utils.global_resources import get_config_path, initialize_if_needed
 
 app = typer.Typer()
 
@@ -9,4 +9,5 @@ def locate():
     """
     Locates the JQB DevTools config file
     """
+    initialize_if_needed()
     print(get_config_path())

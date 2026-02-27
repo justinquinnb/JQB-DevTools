@@ -5,7 +5,7 @@ import typer
 import subprocess
 import os
 import yaml
-from ..utils.config import get_config_path
+from ..utils.global_resources import get_config_path, initialize_if_needed
 
 app = typer.Typer()
 
@@ -17,6 +17,8 @@ def init(
     """
     Initializes the current directory as a JQ DevTools-compatible project.
     """
+    initialize_if_needed()
+
     cwd = Path.cwd()
     print(f"Initializing project {cwd.name}...")
 
