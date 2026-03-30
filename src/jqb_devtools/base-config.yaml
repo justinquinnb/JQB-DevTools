@@ -1,1 +1,12 @@
-ides:
+config-version: null
+
+available-ides:
+  - null
+
+default-ide: null
+default-config: null
+
+open-initialized-project-by-default: true
+
+ask-to-save-new-custom-configs: true
+save-new-custom-configs-default: false
