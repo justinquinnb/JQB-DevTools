@@ -1,7 +1,6 @@
 from typing import Callable
 
 import yaml
-from markdown_it.rules_block import reference
 
 from jqb_devtools.app_utils.rsc_provider import get_app_config_data, get_base_app_config_data, get_app_config_path
 from importlib import metadata
@@ -78,7 +77,7 @@ def update_app_resources():
     Updates the app's resources to the latest version
     """
     print(f"Migrating JQB DevTools app resources from version "
-          f"{get_app_config_data()['config-version']} to the latest version {get_current_app_version_str()}...")
+          f"{get_app_config_data()['app-config-version']} to the latest version {get_current_app_version_str()}...")
     migrate_app_config()
     print("JQB DevTools app resources update complete.")
 
@@ -88,12 +87,12 @@ def migrate_app_config():
     Migrates the app's config to the latest config format
     """
     transient_config = get_app_config_data()
-    transient_version = transient_config['config-version']
+    transient_version = transient_config['app-config-version']
 
     # While there are still migration steps left to perform
     while transient_version in app_cfg_migrators.keys():
         transient_config = app_cfg_migrators[transient_version](transient_config)
-        transient_version = transient_config['config-version']
+        transient_version = transient_config['app-config-version']
 
     # Fill in any new config properties that didn't exist before
     base_config = get_base_app_config_data()
@@ -121,7 +120,7 @@ def add_missing_cfg_properties(incomplete_config: dict, reference_config: dict) 
 
 def migrate0_0_4(old_config: dict) -> dict:
     new_config = old_config.copy()
-    new_config['config-version'] = "0.0.5"
+    new_config['app-config-version'] = "0.0.5"
     return new_config
 
 

@@ -39,10 +39,10 @@ def get_app_config_path() -> Path:
 
 
 def get_existing_app_config_version() -> str:
-    return get_app_config_data()['config-version']
+    return get_app_config_data()['app-config-version']
 
 def get_current_app_config_version() -> str:
-    return get_base_app_config_data()['config-version']
+    return get_base_app_config_data()['app-config-version']
 
 def get_app_config_data() -> dict:
     """

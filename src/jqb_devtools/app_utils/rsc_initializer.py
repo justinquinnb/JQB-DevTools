@@ -44,7 +44,7 @@ def initialize_config(config_file: Path):
 
         with source_path.open("r") as base_config:
             base_yaml = yaml.safe_load(base_config)
-            base_yaml['config-version'] = get_current_app_version_str()
+            base_yaml['app-config-version'] = get_current_app_version_str()
             config_file.write_text(base_config.read())
     except Exception as e:
         print(f"Failed to initialize config: {e}")
